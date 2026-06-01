@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en-PH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─────────────────────────────────────────────────────────────
+       GOOGLE ANALYTICS (GA4)
+       TODO: replace G-XXXXXXXXXX below with your real Measurement ID.
+       Create a property at analytics.google.com → Admin → Data Streams.
+       Until you swap the ID, this snippet is inert (no tracking).
+       ───────────────────────────────────────────────────────────── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <title>UnstuckBids — Government Bid Intelligence for Filipino Small Businesses</title>
+  <meta name="description" content="UnstuckBids sends busy Filipino small suppliers a curated Monday-morning brief of government procurement opportunities — across printing, catering, cleaning, supplies, and dozens more categories. The best PhilGEPS bids, repeat buyers, and bidding tips, with the hours of research already done. Free brief. Launching soon." />
+  <meta name="keywords" content="PhilGEPS opportunities, government bids Philippines, procurement intelligence Philippines, printing government contracts, catering government bids, janitorial cleaning government contracts, office supplies government bids, government supplier opportunities, promotional products government, bid alerts Philippines, SME government procurement, win government contracts Philippines" />
+  <meta name="author" content="UnstuckBids" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://unstuckbids.com/" />
+
+  <!-- Geo signals (helps local + PH relevance) -->
+  <meta name="geo.region" content="PH" />
+  <meta name="geo.placename" content="Metro Manila, Philippines" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="UnstuckBids — Government Bid Intelligence for Filipino Small Businesses" />
+  <meta property="og:description" content="A curated Monday-morning brief of the best government procurement opportunities for small suppliers — printing, catering, cleaning, supplies, and dozens more categories. The PhilGEPS research, already done for you." />
+  <meta property="og:url" content="https://unstuckbids.com/" />
+  <meta property="og:locale" content="en_PH" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UnstuckBids",
+    "url": "https://unstuckbids.com/",
+    "description": "Curated government procurement intelligence for Filipino small businesses across dozens of categories — printing, catering, cleaning, office and IT supplies, uniforms, promotional products, and more (excluding major infrastructure).",
+    "areaServed": "PH",
+    "knowsLanguage": ["en", "fil"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a1020;
+      --bg2: #0d1426;
+      --card: rgba(255,255,255,0.035);
+      --card-solid: #121b30;
+      --border: rgba(255,255,255,0.09);
+      --text: #e8edf6;
+      --muted: #93a0b8;
+      --gold: #f2b134;
+      --gold-dim: rgba(242,177,52,0.12);
+      --teal: #2dd4bf;
+      --teal-dim: rgba(45,212,191,0.12);
+      --red: #f87171;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    /* ambient glow */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(900px 600px at 15% -5%, rgba(242,177,52,0.10), transparent 60%),
+        radial-gradient(800px 700px at 100% 10%, rgba(45,212,191,0.08), transparent 55%);
+    }
+    .wrap { position: relative; z-index: 1; }
+    a { color: inherit; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px; backdrop-filter: blur(12px);
+      background: rgba(10,16,32,0.7); border-bottom: 1px solid var(--border);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.12rem; letter-spacing: -0.3px; }
+    .brand svg { width: 26px; height: 26px; }
+    .brand span em { color: var(--gold); font-style: normal; }
+    .nav-pill {
+      background: var(--gold-dim); border: 1px solid rgba(242,177,52,0.25);
+      color: var(--gold); font-size: 0.82rem; font-weight: 600;
+      padding: 8px 18px; border-radius: 50px; cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    .nav-pill:hover { background: rgba(242,177,52,0.22); }
+
+    /* HERO */
+    .hero { padding: 96px 32px 64px; text-align: center; max-width: 880px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal-dim); border: 1px solid rgba(45,212,191,0.28);
+      color: var(--teal); font-size: 0.78rem; font-weight: 600;
+      padding: 7px 16px; border-radius: 50px; margin-bottom: 26px; letter-spacing: 0.04em;
+    }
+    .dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+    h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.3rem, 5.4vw, 4rem);
+      font-weight: 900; line-height: 1.08; margin-bottom: 22px; letter-spacing: -1px; color: #fff;
+    }
+    h1 em { color: var(--gold); font-style: normal; }
+    .hero p.sub { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto 34px; }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: #0a1020; font-weight: 800; font-size: 1rem;
+      padding: 15px 34px; border-radius: 11px; border: none; cursor: pointer;
+      transition: all 0.25s; box-shadow: 0 10px 34px rgba(242,177,52,0.32); text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 42px rgba(242,177,52,0.46); }
+    .btn-ghost {
+      background: transparent; color: var(--text); font-weight: 600; font-size: 1rem;
+      padding: 15px 30px; border-radius: 11px; border: 1px solid var(--border); cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-block;
+    }
+    .btn-ghost:hover { background: var(--card); }
+    .micro { margin-top: 16px; font-size: 0.82rem; color: var(--muted); }
+
+    /* TRUST STRIP */
+    .trust { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; padding: 8px 24px 72px; max-width: 980px; margin: 0 auto; }
+    .stat { flex: 1 1 200px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 20px; text-align: center; }
+    .stat .num { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 900; color: var(--gold); }
+    .stat .lbl { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+    /* SECTIONS */
+    section.block { max-width: 1040px; margin: 0 auto; padding: 56px 32px; }
+    .eyebrow { color: var(--teal); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
+    h2.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 900; text-align: center; margin: 10px auto 14px; color: #fff; max-width: 720px; line-height: 1.15; }
+    .section-lead { text-align: center; color: var(--muted); max-width: 640px; margin: 0 auto 40px; font-size: 1.02rem; }
+
+    /* PROBLEM */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; }
+    .pcard { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 26px 24px; }
+    .pcard .ic { font-size: 1.6rem; }
+    .pcard h3 { font-size: 1.05rem; margin: 12px 0 6px; }
+    .pcard p { color: var(--muted); font-size: 0.92rem; }
+
+    /* HOW */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 18px; counter-reset: step; }
+    .step { background: var(--card-solid); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; position: relative; }
+    .step::before { counter-increment: step; content: counter(step); position: absolute; top: -14px; left: 24px; width: 34px; height: 34px; display: grid; place-items: center; background: var(--gold); color: #0a1020; font-weight: 800; border-radius: 9px; box-shadow: 0 6px 18px rgba(242,177,52,0.4); }
+    .step h3 { font-size: 1.08rem; margin: 14px 0 8px; }
+    .step p { color: var(--muted); font-size: 0.93rem; }
+
+    /* RADARS */
+    .radars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; }
+    .radar { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 26px 22px; transition: transform .2s, border-color .2s; }
+    .radar:hover { transform: translateY(-4px); border-color: rgba(242,177,52,0.4); }
+    .radar .emoji { font-size: 2rem; }
+    .radar h3 { font-size: 1.15rem; margin: 10px 0 6px; }
+    .radar .vol { color: var(--teal); font-weight: 700; font-size: 0.85rem; }
+    .radar p { color: var(--muted); font-size: 0.9rem; margin-top: 8px; }
+    .live-tag { display: inline-block; margin-top: 14px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 50px; }
+    .live-tag.now { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45,212,191,0.3); }
+    .live-tag.soon { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+
+    /* MORE CATEGORIES */
+    .more-cats { margin-top: 34px; text-align: center; }
+    .more-cats p.intro { color: var(--muted); max-width: 680px; margin: 0 auto 18px; font-size: 1rem; }
+    .more-cats p.intro strong { color: var(--text); }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 860px; margin: 0 auto; }
+    .chips span { background: var(--card); border: 1px solid var(--border); border-radius: 50px; padding: 8px 16px; font-size: 0.85rem; color: var(--muted); }
+    .exclude { margin-top: 20px; font-size: 0.85rem; color: var(--muted); }
+    .exclude strong { color: var(--text); }
+
+    /* SAMPLE PREVIEW */
+    .sample { background: var(--card-solid); border: 1px solid var(--border); border-radius: 18px; padding: 30px; max-width: 720px; margin: 0 auto; }
+    .sample .head { font-weight: 800; font-size: 1.05rem; color: var(--gold); }
+    .sample .sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 18px; }
+    .opp { border-left: 3px solid var(--gold); padding: 10px 0 10px 16px; margin: 14px 0; }
+    .opp .t { font-weight: 700; }
+    .opp .meta { color: var(--muted); font-size: 0.86rem; margin-top: 3px; }
+    .opp .tip { color: var(--teal); font-size: 0.84rem; margin-top: 4px; }
+
+    /* UPSELL */
+    .upsell { background: linear-gradient(135deg, rgba(242,177,52,0.10), rgba(45,212,191,0.06)); border: 1px solid rgba(242,177,52,0.25); border-radius: 20px; padding: 40px 34px; text-align: center; }
+    .upsell h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3.2vw,2.3rem); color: #fff; margin-bottom: 12px; }
+    .upsell p { color: var(--muted); max-width: 600px; margin: 0 auto 8px; }
+    .upsell .pillrow { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .upsell .pillrow span { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 50px; padding: 8px 16px; font-size: 0.85rem; }
+
+    /* PRICING */
+    .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; align-items: stretch; }
+    .tier { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px 24px; display: flex; flex-direction: column; }
+    .tier.feature { border-color: var(--gold); box-shadow: 0 12px 40px rgba(242,177,52,0.14); position: relative; }
+    .tier.feature::after { content: 'MOST POPULAR'; position: absolute; top: -11px; right: 20px; background: var(--gold); color: #0a1020; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 50px; }
+    .tier .name { font-weight: 700; font-size: 1.05rem; }
+    .tier .price { font-family: 'Playfair Display', serif; font-size: 2.1rem; font-weight: 900; margin: 8px 0 2px; color: #fff; }
+    .tier .price small { font-size: 0.85rem; color: var(--muted); font-weight: 400; font-family: 'Inter'; }
+    .tier ul { list-style: none; margin: 16px 0 22px; }
+    .tier li { color: var(--muted); font-size: 0.9rem; padding: 6px 0 6px 24px; position: relative; }
+    .tier li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+    .tier .pick { margin-top: auto; }
+    .pricing-note { text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 18px; }
+
+    /* SIGNUP FORM */
+    .signup { background: var(--card-solid); border: 1px solid var(--border); border-radius: 20px; padding: 38px 34px; max-width: 680px; margin: 0 auto; }
+    .signup h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3.2vw,2.2rem); color: #fff; margin-bottom: 8px; text-align: center; }
+    .signup .lead { color: var(--muted); text-align: center; margin-bottom: 26px; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; margin-bottom: 14px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .field input, .field select {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 14px; color: var(--text); font-size: 0.95rem; font-family: inherit; transition: border-color .2s;
+    }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--gold); }
+    .field input::placeholder { color: #5d6b85; }
+    .check { display: flex; align-items: flex-start; gap: 10px; margin: 6px 0 18px; color: var(--muted); font-size: 0.88rem; }
+    .check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold); }
+    .btn-send {
+      width: 100%; background: var(--gold); color: #0a1020; font-weight: 800; font-size: 1.02rem;
+      padding: 15px; border: none; border-radius: 11px; cursor: pointer; transition: all .25s; box-shadow: 0 10px 30px rgba(242,177,52,0.3);
+    }
+    .btn-send:hover { transform: translateY(-2px); }
+    .btn-send:disabled { opacity: .6; cursor: wait; transform: none; }
+    .status { margin-top: 14px; text-align: center; font-size: 0.92rem; padding: 12px; border-radius: 10px; }
+    .status.ok { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45,212,191,0.3); }
+    .status.err { background: rgba(248,113,113,0.1); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+    .status a { color: var(--gold); }
+    .fineprint { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 14px; line-height: 1.7; }
+
+    /* DISCLAIMER */
+    .disclaimer { max-width: 880px; margin: 40px auto 0; background: rgba(248,113,113,0.05); border: 1px solid rgba(248,113,113,0.16); border-radius: 14px; padding: 20px 24px; font-size: 0.8rem; color: var(--muted); line-height: 1.75; }
+    .disclaimer strong { color: var(--text); }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 48px 32px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; line-height: 1.9; }
+    footer strong { color: var(--text); }
+    footer .made { font-style: italic; display: block; margin-top: 14px; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 560px) {
+      .frow { grid-template-columns: 1fr; }
+      nav { padding: 14px 20px; }
+      .hero { padding: 64px 22px 48px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav>
+    <div class="brand">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="13" stroke="#f2b134" stroke-width="2"/>
+        <circle cx="16" cy="16" r="6.5" stroke="#2dd4bf" stroke-width="2"/>
+        <circle cx="16" cy="16" r="1.8" fill="#f2b134"/>
+        <path d="M16 3 L16 9" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Unstuck<em>Bids</em></span>
+    </div>
+    <a href="#signup" class="nav-pill">Get the free brief →</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge"><span class="dot"></span> Launching soon · Free Monday brief</div>
+    <h1>Government bids that <em>never run out.</em><br>Finally, you can keep up.</h1>
+    <p class="sub">Every Monday, busy Filipino suppliers get a curated brief of the best government procurement opportunities for their trade — printing, catering, cleaning, supplies, and dozens more. Repeat buyers, deadlines, and bidding tips, with the hours of PhilGEPS searching already done for you.</p>
+    <div class="hero-cta">
+      <a href="#signup" class="btn-primary">Get my free Monday brief</a>
+      <a href="#how" class="btn-ghost">See how it works</a>
+    </div>
+    <p class="micro">No credit card. Free for your first year. Cancel anytime — there's nothing to cancel.</p>
+  </header>
+
+  <!-- TRUST STRIP -->
+  <div class="trust">
+    <div class="stat"><div class="num">20+</div><div class="lbl">Categories of goods &amp; services we track — from printing to cleaning to IT</div></div>
+    <div class="stat"><div class="num">1,000s</div><div class="lbl">New opportunities posted across the country every single week</div></div>
+    <div class="stat"><div class="num">5–15 hrs</div><div class="lbl">Wasted weekly by owners searching the portal by hand</div></div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="block">
+    <p class="eyebrow">The bandwidth tax</p>
+    <h2 class="section-title">The opportunities are there. The <em>time to find them</em> isn't.</h2>
+    <p class="section-lead">Government agencies post tens of thousands of small-ticket contracts a year — printing, catering, cleaning, supplies, equipment, and far more. The work is steady. The problem is that finding it means living inside a slow government portal you don't have time for.</p>
+    <div class="problem-grid">
+      <div class="pcard"><div class="ic">⏳</div><h3>Hours you can't spare</h3><p>Owner-operators burn 5–15 hours a week scrolling PhilGEPS — time stolen from running the actual business.</p></div>
+      <div class="pcard"><div class="ic">🕳️</div><h3>Opportunities slip by</h3><p>The portal is clunky and easy to miss. By the time you spot a good bid, the deadline has often passed.</p></div>
+      <div class="pcard"><div class="ic">🤷</div><h3>No pattern, no edge</h3><p>Which agencies actually buy what you sell? Who buys again every quarter? Most suppliers are guessing.</p></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="block" id="how">
+    <p class="eyebrow">How UnstuckBids works</p>
+    <h2 class="section-title">We watch. AI sorts. You get a clear Monday brief.</h2>
+    <p class="section-lead">No new portal to learn. No dashboard to babysit. Just an honest, plain-language email that lands before your first coffee.</p>
+    <div class="steps">
+      <div class="step"><h3>We monitor the opportunities</h3><p>Every day we track new government procurement notices across the Philippines so you don't have to sit in front of the portal.</p></div>
+      <div class="step"><h3>AI curates &amp; analyzes</h3><p>Our system filters by your category, flags repeat buyers, spots seasonal spikes, and summarizes each bid in plain language.</p></div>
+      <div class="step"><h3>You get your Monday brief</h3><p>Monday 8 AM: 5–10 of the best opportunities for your trade, with deadlines, budgets, and bidding tips — ready to act on.</p></div>
+    </div>
+  </section>
+
+  <!-- RADARS -->
+  <section class="block">
+    <p class="eyebrow">Choose your radar</p>
+    <h2 class="section-title">Intelligence built around <em>your</em> trade</h2>
+    <p class="section-lead">We don't dump everything on you. Each radar is tuned to your line of business — only the bids that actually fit what you do. We're starting with these, and adding more every month.</p>
+    <div class="radars">
+      <div class="radar">
+        <div class="emoji">🖨️</div>
+        <h3>Printing Radar</h3>
+        <div class="vol">20–50 opportunities / week</div>
+        <p>Tarpaulins, signage, forms, workbooks, IDs. Heavy repeat buyers: DepEd, COMELEC, BIR, LGUs.</p>
+        <span class="live-tag now">● Starting first</span>
+      </div>
+      <div class="radar">
+        <div class="emoji">🍽️</div>
+        <h3>Catering Radar</h3>
+        <div class="vol">30–70 opportunities / week</div>
+        <p>Meals, events, training, official functions. Steady year-round demand from PNP, AFP, DOH, LGUs.</p>
+        <span class="live-tag soon">Coming next</span>
+      </div>
+      <div class="radar">
+        <div class="emoji">🧼</div>
+        <h3>Cleaning &amp; Janitorial Radar</h3>
+        <div class="vol">High, steady year-round</div>
+        <p>Janitorial services, cleaning supplies, sanitation. Nearly every agency and LGU buys this on repeat.</p>
+        <span class="live-tag soon">Coming next</span>
+      </div>
+      <div class="radar">
+        <div class="emoji">🎁</div>
+        <h3>Giveaways &amp; Promo Radar</h3>
+        <div class="vol">10–30 opportunities / week</div>
+        <p>Tokens, tumblers, shirts, kits, premiums. Spikes during fiestas, elections, and year-end.</p>
+        <span class="live-tag soon">Coming next</span>
+      </div>
+    </div>
+
+    <div class="more-cats">
+      <p class="intro">And we track <strong>everything else a small supplier can win</strong> — if you can deliver it, there's probably a government buyer for it. Tell us your line and we'll build your radar:</p>
+      <div class="chips">
+        <span>🧹 Janitorial &amp; cleaning</span>
+        <span>🖥️ IT &amp; computers</span>
+        <span>📎 Office supplies</span>
+        <span>🪑 Furniture &amp; fixtures</span>
+        <span>🩺 Medical &amp; lab supplies</span>
+        <span>😷 PPE &amp; safety</span>
+        <span>👕 Uniforms &amp; textiles</span>
+        <span>🛡️ Security &amp; manpower</span>
+        <span>🔧 Repairs &amp; maintenance</span>
+        <span>🐀 Pest control</span>
+        <span>🚐 Vehicle &amp; equipment rental</span>
+        <span>🎤 Events &amp; AV</span>
+        <span>🛒 Groceries &amp; food supplies</span>
+        <span>🛠️ Hardware &amp; tools</span>
+        <span>🌱 Agricultural supplies</span>
+        <span>📦 …and more</span>
+      </div>
+      <p class="exclude">The only thing we skip: <strong>the mega-projects</strong> — roads, bridges, and major construction. Those aren't for small suppliers. Everything else is fair game.</p>
+    </div>
+  </section>
+
+  <!-- SAMPLE PREVIEW -->
+  <section class="block">
+    <p class="eyebrow">A peek inside</p>
+    <h2 class="section-title">This is what lands in your inbox</h2>
+    <div class="sample">
+      <div class="head">🎯 Monday Intelligence — ₱2.8M in printing opportunities this week</div>
+      <div class="sub">Sample brief · for illustration. Always verify details against the official notice before bidding.</div>
+      <div class="opp">
+        <div class="t">1 · Regional Hospital — Printed forms &amp; letterheads</div>
+        <div class="meta">Budget ₱450,000 · Deadline Jun 14, 2 PM · 🔁 Repeat buyer (quarterly)</div>
+        <div class="tip">💡 Tip: they value fast turnaround over lowest price — lead with your 48-hour capability.</div>
+      </div>
+      <div class="opp">
+        <div class="t">2 · University — Uniforms &amp; printed materials</div>
+        <div class="meta">Budget ₱800,000 · Deadline Jun 10, 10 AM · 🔁 Annual buyer</div>
+        <div class="tip">💡 Tip: incumbent-friendly. Strong fit if you've delivered to schools before.</div>
+      </div>
+      <div class="opp">
+        <div class="t">3 · DepEd — Workbook printing (high volume)</div>
+        <div class="meta">Budget ₱1,200,000 · Deadline Jun 21, 5 PM · 🔁 Every June</div>
+        <div class="tip">💡 Tip: tight margins, big volume — bid only if your press capacity is free.</div>
+      </div>
+      <div class="opp" style="border-color: var(--teal);">
+        <div class="t">📊 Seasonal note</div>
+        <div class="meta">June–August: ~+35% printing volume (school-year prep). Queue your capacity now.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPSELL -->
+  <section class="block">
+    <div class="upsell">
+      <p class="eyebrow">Don't have the bandwidth to bid?</p>
+      <h2>Let us handle the paperwork.</h2>
+      <p>Spotting the bid is half the battle — assembling the documents is the other half. With our optional <strong>done-for-you application service</strong>, our AI drafts and assembles your bid paperwork, and our team helps you get submission-ready. You review, you approve, you submit through the official channels.</p>
+      <p style="color:var(--text); margin-top:12px;"><strong>You stay in control. We just remove the busywork.</strong></p>
+      <div class="pillrow">
+        <span>📄 Document assembly</span>
+        <span>✍️ AI-drafted forms</span>
+        <span>✅ Eligibility checklist</span>
+        <span>🗓️ Deadline tracking</span>
+      </div>
+      <p class="micro" style="margin-top:18px;">Available as an add-on. Tell us you're interested in the form below and we'll line it up for you.</p>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="block">
+    <p class="eyebrow">The math</p>
+    <h2 class="section-title">One extra contract pays for the year</h2>
+    <p class="section-lead">Win just <strong>one</strong> additional ₱50,000 government contract a quarter because you caught it in time. That's ₱200,000 in new revenue a year — and roughly ₱40,000 in added profit. And right now the brief is free, so every peso of that is pure upside.</p>
+    <div class="problem-grid">
+      <div class="pcard"><div class="ic">📈</div><h3>+₱200,000 / year</h3><p>From one additional small contract won each quarter you'd otherwise have missed.</p></div>
+      <div class="pcard"><div class="ic">⏰</div><h3>+8–12 hrs / week</h3><p>Hours handed back to you — to bid better, deliver faster, or just breathe.</p></div>
+      <div class="pcard"><div class="ic">🎯</div><h3>Bid where you'll win</h3><p>Repeat-buyer flags help you spend effort on the contracts you're most likely to land.</p></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="block">
+    <p class="eyebrow">Pricing</p>
+    <h2 class="section-title">Free for your first year. The whole thing.</h2>
+    <p class="section-lead">No tiers. No locked features. No credit card. Everyone who joins now gets the complete brief — every part of it — free for a full year, while we earn a permanent spot in your Monday.</p>
+    <div class="upsell">
+      <div style="font-family:'Playfair Display',serif; font-size:clamp(2.6rem,7vw,3.6rem); font-weight:900; color:#fff; line-height:1;">₱0</div>
+      <p style="margin-top:14px;">You get everything, with nothing held back:</p>
+      <div class="pillrow">
+        <span>📨 Full curated Monday brief</span>
+        <span>🔁 Repeat-buyer intel</span>
+        <span>📊 Seasonal trends</span>
+        <span>💡 Bidding tips from winners</span>
+        <span>🗓️ Deadline reminders</span>
+        <span>🎯 Your category radar</span>
+      </div>
+      <p class="micro" style="margin-top:22px;">We'll only ever bring up paid plans after you've had a full year of real value — and members who join now keep founder treatment whenever that day comes.</p>
+      <div style="margin-top:24px;"><a href="#signup" class="btn-primary">Sign up now</a></div>
+    </div>
+    <p class="pricing-note">The done-for-you application service (where we handle your bid paperwork for you) is a separate, optional add-on — that's how we keep the lights on while the brief itself stays free.</p>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="block" id="signup">
+    <div class="signup">
+      <h2>Get your first brief free</h2>
+      <p class="lead">Join the launch list. Tell us your trade and we'll send your first curated Monday brief as soon as your radar goes live.</p>
+      <form onsubmit="return sendLead(event)">
+        <div class="frow">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" placeholder="Juan dela Cruz" required>
+          </div>
+          <div class="field">
+            <label for="business">Business name</label>
+            <input type="text" id="business" placeholder="e.g., QuickPrint Solutions">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@email.com" required>
+          </div>
+          <div class="field">
+            <label for="city">City / Province</label>
+            <input type="text" id="city" placeholder="e.g., Quezon City">
+          </div>
+        </div>
+        <div class="field full">
+          <label for="category">What does your business supply?</label>
+          <select id="category">
+            <option value="Printing">Printing / Tarpaulins / Signage</option>
+            <option value="Catering">Catering / Food Services</option>
+            <option value="Cleaning &amp; Janitorial">Cleaning / Janitorial (supplies &amp; services)</option>
+            <option value="Giveaways">Giveaways / Promotional Products</option>
+            <option value="Office, IT &amp; Equipment">Office, IT &amp; equipment supplies</option>
+            <option value="Uniforms &amp; Textiles">Uniforms &amp; textiles</option>
+            <option value="Medical &amp; Lab">Medical / lab / PPE supplies</option>
+            <option value="Services">Services (security, repairs, maintenance, rental)</option>
+            <option value="Other goods or services">Something else (tell us below)</option>
+          </select>
+        </div>
+        <label class="check">
+          <input type="checkbox" id="dfy">
+          <span>I'd also like info on the <strong>done-for-you application service</strong> (AI handles the bid paperwork).</span>
+        </label>
+        <!-- honeypot -->
+        <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button type="submit" class="btn-send">Send me the free brief →</button>
+      </form>
+      <p class="status" id="status" style="display:none"></p>
+      <p class="fineprint">We use your details <strong>only</strong> to send your brief and launch updates — no spam, no selling your data. Unsubscribe anytime in one click.</p>
+    </div>
+
+    <!-- LEGAL DISCLAIMER -->
+    <div class="disclaimer">
+      <strong>📋 Please read:</strong> UnstuckBids is an independent intelligence service. We are <strong>not affiliated with, endorsed by, or operated by PhilGEPS or the Procurement Service of the Department of Budget and Management (PS-DBM)</strong>, nor by any government agency. We provide our own curation, analysis, and plain-language summaries of publicly available government procurement activity — we do not sell or redistribute raw PhilGEPS data. All official registration, bidding, and document submission happens through the official channels at <strong>philgeps.gov.ph</strong> and the relevant procuring entity. Opportunity details (budgets, deadlines, requirements) are summaries for guidance only and may change — always verify against the official notice before you bid. UnstuckBids does not guarantee any contract award and is not responsible for bidding outcomes.
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>UnstuckBids</strong> · unstuckbids.com · Government bid intelligence for Filipino small businesses<br>
+    Helping small suppliers across dozens of categories find — and win — the government opportunities they're already qualified for.<br>
+    Independent service · Not affiliated with PhilGEPS or PS-DBM · Official portal: philgeps.gov.ph<br>
+    <span class="made">Made in the 🇵🇭 for every hardworking supplier — from the Manila print shop to the provincial caterer. You do the work. We'll make sure you never miss the chance to bid.</span>
+  </footer>
+
+</div>
+
+<script>
+// =====================
+// LEAD CAPTURE (UnstuckBids launch waitlist)
+// 1. FORM_ENDPOINT: paste your Formspree endpoint (https://formspree.io/f/xxxxxxx).
+//    Create a free form at formspree.io, then replace the placeholder below.
+//    Leads arrive in your Formspree dashboard + inbox automatically.
+// 2. INBOX: mailto fallback used only if the network request fails.
+// =====================
+const FORM_ENDPOINT = 'https://formspree.io/f/mkoeljjj';
+const INBOX = 'hello@unstuckbids.com';
+
+function leadFields() {
+  const v = id => (document.getElementById(id) ? document.getElementById(id).value.trim() : '');
+  return {
+    name: v('name'),
+    business: v('business'),
+    email: v('email'),
+    city: v('city'),
+    category: v('category'),
+    wants_dfy: document.getElementById('dfy').checked ? 'Yes' : 'No',
+    _gotcha: v('gotcha')
+  };
+}
+
+function mailtoFallback(e) {
+  if (e) e.preventDefault();
+  const f = leadFields();
+  const subject = `UnstuckBids waitlist — ${f.category}`;
+  const body =
+    `Hi UnstuckBids,\n\nI'd like to join the launch list for the free Monday brief.\n\n` +
+    `Name: ${f.name}\nBusiness: ${f.business || '(not provided)'}\nEmail: ${f.email}\n` +
+    `City: ${f.city || '(not provided)'}\nRadar: ${f.category}\n` +
+    `Interested in done-for-you application service: ${f.wants_dfy}\n\nSalamat!`;
+  window.location.href = `mailto:${INBOX}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return false;
+}
+
+async function sendLead(e) {
+  e.preventDefault();
+  const form = e.target;
+  const f = leadFields();
+  const status = document.getElementById('status');
+  const btn = form.querySelector('.btn-send');
+  const label = btn.textContent;
+
+  // basic spam guard
+  if (f._gotcha) return false;
+
+  gtag('event','waitlist_signup',{'event_category':'lead','radar':f.category,'wants_dfy':f.wants_dfy});
+  btn.disabled = true; btn.textContent = 'Sending…';
+  status.style.display = 'none';
+
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...f, _subject: `UnstuckBids waitlist — ${f.category}` })
+    });
+    if (!res.ok) throw new Error('Form endpoint returned ' + res.status);
+    form.reset();
+    status.className = 'status ok';
+    status.textContent = '✓ Salamat! You\'re on the list. Watch your inbox — your first Monday brief is on the way as soon as your radar goes live.';
+    status.style.display = 'block';
+  } catch (err) {
+    status.className = 'status err';
+    status.innerHTML = 'That didn\'t go through. <a href="#" onclick="return mailtoFallback(event)">Tap here to send it by email instead →</a>';
+    status.style.display = 'block';
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+  return false;
+}
+</script>
+</body>
+</html>
